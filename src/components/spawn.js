@@ -1,5 +1,7 @@
 import k from '../kaboom';
 
+import getRandomPosition from '../utils/geRandomPosition';
+
 export default function spawn(){
     const{
         wait,
@@ -14,10 +16,11 @@ export default function spawn(){
         spawn(){
             wait(1, ()=>{
                 add([
-                    pos(128, 128),
+                    pos(getRandomPosition()),
                     rect(16, 16),
                     color(0, 0, 1, 1),
-                    origin('center')
+                    origin('center'),
+                    'food'
                 ])
             })
         }

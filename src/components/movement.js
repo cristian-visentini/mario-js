@@ -5,8 +5,8 @@ export default function movement(){
         vec2,
         dt
     } =k;
-    const direction = vec2(0, 1);
-    const speed = 5;
+    const direction = vec2(0, 0);
+    const speed = 16;
     let acumulatedTime = 0;
 
 
@@ -17,7 +17,7 @@ export default function movement(){
         update(){
             acumulatedTime += dt();
 
-            if(acumulatedTime < 0.25){
+            if(acumulatedTime < 0.5){
                 return;
             }
 
@@ -29,6 +29,14 @@ export default function movement(){
 
             this.pos.x += direction.x * speed;
             this.pos.y += direction.y * speed;
+
+            const child = this.getChild();
+
+            if(!child){
+                return;
+            }
+
+            child.moveUpdate(this.pos.x, this.pos.y);
         },
         movement: {
             left() {
